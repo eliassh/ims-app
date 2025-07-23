@@ -2,7 +2,7 @@
 import { OpenAI } from 'openai'
 
 const client = new OpenAI({
-  baseURL: 'https://models.github.ai/inference',
+  baseURL: import.meta.env.VITE_GITHUB_AI_URL,
   apiKey: import.meta.env.VITE_GITHUB_TOKEN,
 })
 

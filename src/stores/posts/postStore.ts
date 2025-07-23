@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { CreatePostDTO, Post, UpdatePostDTO } from '@/services/posts/types';
+import type { Post } from '@/services/posts/types';
 import { API } from '@/services';
 import { AxiosError } from 'axios';
 import type { APIResponse } from '@/services/types';

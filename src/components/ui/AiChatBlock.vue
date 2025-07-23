@@ -41,7 +41,12 @@ const sendMessage = async () => {
     loading.value = false
   }
 }
-
+const handleEnter = (e: KeyboardEvent) => {
+  if (e.shiftKey) return // allow newline on Shift+Enter
+  if (userInput.value.trim()) {
+    sendMessage()
+  }
+}
 const richHtml = computed(() => marked.parse(message.value))
 </script>
 <template>
@@ -51,6 +56,7 @@ const richHtml = computed(() => marked.parse(message.value))
       class="w-full border p-2"
       rows="3"
       placeholder="Ask me anything..."
+      @keydown.enter.prevent="handleEnter"
     ></textarea>
     <button
       @click="sendMessage"

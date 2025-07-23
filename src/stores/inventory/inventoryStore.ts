@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { supabase } from '@/supabase'
-import type { InventoryItem, InventoryStatus } from '@/services/inventory/types'
+import type { InventoryItem, InventoryStatus } from '@/stores/inventory/types'
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<InventoryItem[]>([])
+  const loading = ref(false)
 
   // ====== GETTERS ======
   const getItemById = computed(() => {
@@ -34,13 +35,19 @@ export const useInventoryStore = defineStore('inventory', () => {
   // ====== ACTIONS ======
 
   const dispatchFetchItems = async () => {
-    const { data, error } = await supabase
-      .from('inventory_items')
-      .select('*')
-      .order('created_at', { ascending: false })
+    loading.value = true
+    try {
+      const { data, error } = await supabase
+        .from('inventory_items')
+        .select('*')
+        .order('created_at', { ascending: false })
 
-    if (error) throw new Error(error.message)
-    if (data) initItems(data as InventoryItem[])
+      if (error) throw new Error(error.message)
+      if (data) initItems(data as InventoryItem[])
+    } finally {
+      loading.value = false
+
+    }
   }
 
   const dispatchAddItem = async (input: {
@@ -49,33 +56,50 @@ export const useInventoryStore = defineStore('inventory', () => {
     category: string
     status: InventoryStatus
   }) => {
-    const { data, error } = await supabase.from('inventory_items').insert([input]).select().single()
+    loading.value = true
+    try {
+      const { data, error } = await supabase.from('inventory_items').insert([input]).select().single()
 
-    if (error) throw new Error(error.message)
-    if (data) addItem(data as InventoryItem)
+      if (error) throw new Error(error.message)
+      if (data) addItem(data as InventoryItem)
+    } finally {
+      loading.value = false
+
+    }
   }
 
   const dispatchUpdateItem = async (id: string, updatedFields: Partial<InventoryItem>) => {
-    const { data, error } = await supabase
-      .from('inventory_items')
-      .update(updatedFields)
-      .eq('id', id)
-      .select()
-      .single()
+    loading.value = true
+    try {
+      const { data, error } = await supabase
+        .from('inventory_items')
+        .update(updatedFields)
+        .eq('id', id)
+        .select()
+        .single()
 
-    if (error) throw new Error(error.message)
-    if (data) updateItem(data as InventoryItem)
+      if (error) throw new Error(error.message)
+      if (data) updateItem(data as InventoryItem)
+    } finally {
+      loading.value = false
+    }
   }
 
   const dispatchDeleteItem = async (id: string) => {
-    const { error } = await supabase.from('inventory_items').delete().eq('id', id)
+    loading.value = true
+    try {
+      const { error } = await supabase.from('inventory_items').delete().eq('id', id)
 
-    if (error) throw new Error(error.message)
-    removeItem(id)
+      if (error) throw new Error(error.message)
+      removeItem(id)
+    } finally {
+      loading.value = false
+    }
   }
 
   return {
     items,
+    loading,
     getItemById,
     initItems,
     addItem,
