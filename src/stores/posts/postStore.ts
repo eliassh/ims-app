@@ -5,7 +5,6 @@ import { AxiosError } from 'axios';
 import type { APIResponse } from '@/services/types';
 import { computed, ref } from 'vue';
 
-
 export const usePostStore = defineStore('post', () => {
   const posts = ref<Post[]>([]);
 
@@ -25,11 +24,11 @@ export const usePostStore = defineStore('post', () => {
         data: [],
       };
     }
-  }
+  };
 
   const addPost = (post: Post) => {
     posts.value.push(post);
-  }
+  };
   const dispatchGetPostById = async (id: number) => {
     try {
       const { status, data } = await API.posts.getPostById(id);
@@ -37,17 +36,17 @@ export const usePostStore = defineStore('post', () => {
       if (status === 200) {
         addPost(data);
         return {
-          status
+          status,
         };
       }
     } catch (error) {
       const _error = error as AxiosError<string>;
 
       return {
-        status: _error.response?.status
+        status: _error.response?.status,
       };
     }
-  }
+  };
 
   return {
     posts,
@@ -55,6 +54,6 @@ export const usePostStore = defineStore('post', () => {
     initPosts,
     addPost,
     dispatchGetPosts,
-    dispatchGetPostById
-  }
-})
+    dispatchGetPostById,
+  };
+});

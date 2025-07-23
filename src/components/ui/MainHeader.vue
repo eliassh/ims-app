@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import Button from 'primevue/button'
+import { RouterLink } from 'vue-router';
+import Button from 'primevue/button';
 </script>
 
 <template>
@@ -27,14 +27,35 @@ import Button from 'primevue/button'
       </RouterLink>
 
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center gap-2">
-        <RouterLink to="/" activeClass="bg-indigo-800 rounded">
-          <Button label="Home" text class="hover:bg-indigo-100" />
+        <RouterLink
+          to="/"
+          activeClass="bg-indigo-800 rounded"
+        >
+          <Button
+            label="Home"
+            text
+            class="hover:bg-indigo-100"
+          />
         </RouterLink>
-        <RouterLink to="/inventory" activeClass="bg-indigo-800 rounded">
-          <Button label="Inventory" text class="hover:bg-indigo-100x" />
+        <RouterLink
+          to="/inventory"
+          activeClass="bg-indigo-800 rounded"
+        >
+          <Button
+            label="Inventory"
+            text
+            class="hover:bg-indigo-100x"
+          />
         </RouterLink>
-        <RouterLink to="/about" activeClass="bg-indigo-800 rounded">
-          <Button label="About" text class="hover:bg-indigo-100" />
+        <RouterLink
+          to="/about"
+          activeClass="bg-indigo-800 rounded"
+        >
+          <Button
+            label="About"
+            text
+            class="hover:bg-indigo-100"
+          />
         </RouterLink>
       </nav>
     </div>

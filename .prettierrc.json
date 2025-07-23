@@ -1,8 +1,18 @@
 {
   "$schema": "https://json.schemastore.org/prettierrc",
-  "semi": false,
+  "semi": true,
   "singleQuote": true,
   "printWidth": 100,
   "htmlWhitespaceSensitivity": "ignore",
-  "singleAttributePerLine": false
+  "singleAttributePerLine": false,
+  "overrides": [
+    {
+      "files": "*.vue",
+      "options": {
+        "parser": "vue",
+        "trailingComma": "all",
+        "singleAttributePerLine": true
+      }
+    }
+  ]
 }

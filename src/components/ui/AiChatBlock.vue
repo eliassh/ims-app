@@ -1,24 +1,24 @@
 <script setup lang="ts">
-import OpenAI from 'openai'
-import { computed, ref } from 'vue'
-import { marked } from 'marked'
+import OpenAI from 'openai';
+import { computed, ref } from 'vue';
+import { marked } from 'marked';
 
-const userInput = ref('')
-const response = ref('')
-const message = ref('')
-const prevQuestion = ref('')
-const loading = ref(false)
+const userInput = ref('');
+const response = ref('');
+const message = ref('');
+const prevQuestion = ref('');
+const loading = ref(false);
 
 const sendMessage = async () => {
-  if (!userInput.value.trim()) return
-  loading.value = true
-  response.value = ''
+  if (!userInput.value.trim()) return;
+  loading.value = true;
+  response.value = '';
   try {
     const client = new OpenAI({
       baseURL: 'https://models.github.ai/inference',
       apiKey: import.meta.env.VITE_GITHUB_TOKEN,
       dangerouslyAllowBrowser: true,
-    })
+    });
 
     const response = await client.chat.completions.create({
       messages: [
@@ -29,25 +29,25 @@ const sendMessage = async () => {
       temperature: 1,
       max_tokens: 4096,
       top_p: 1,
-    })
-    prevQuestion.value = userInput.value
-    userInput.value = ''
-    console.log(response.choices[0].message.content)
-    message.value = response.choices[0].message.content ?? ''
+    });
+    prevQuestion.value = userInput.value;
+    userInput.value = '';
+    console.log(response.choices[0].message.content);
+    message.value = response.choices[0].message.content ?? '';
   } catch (err) {
-    console.error(err)
-    response.value = 'Error talking to AI'
+    console.error(err);
+    response.value = 'Error talking to AI';
   } finally {
-    loading.value = false
+    loading.value = false;
   }
-}
+};
 const handleEnter = (e: KeyboardEvent) => {
-  if (e.shiftKey) return // allow newline on Shift+Enter
+  if (e.shiftKey) return; // allow newline on Shift+Enter
   if (userInput.value.trim()) {
-    sendMessage()
+    sendMessage();
   }
-}
-const richHtml = computed(() => marked.parse(message.value))
+};
+const richHtml = computed(() => marked.parse(message.value));
 </script>
 <template>
   <div class="p-4 max-w-xl mx-auto">
@@ -68,9 +68,16 @@ const richHtml = computed(() => marked.parse(message.value))
       {{ loading ? 'Sending...' : 'Send' }}
     </button>
     <h2 class="mt-4 text-lg border-l-4 border-blue-600 pl-2">{{ prevQuestion }}</h2>
-    <div class="mt-2 prose" v-html="richHtml" />
-    <div v-if="response" class="mt-4 p-4 bg-gray-100 rounded">
-      <strong>AI:</strong> {{ response }}
+    <div
+      class="mt-2 prose"
+      v-html="richHtml"
+    />
+    <div
+      v-if="response"
+      class="mt-4 p-4 bg-gray-100 rounded"
+    >
+      <strong>AI:</strong>
+      {{ response }}
     </div>
   </div>
 </template>

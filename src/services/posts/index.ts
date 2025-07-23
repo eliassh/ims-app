@@ -7,7 +7,7 @@ const getPosts = async (): Promise<APIResponse<Post[]>> => {
   return {
     status: response.status,
     data: response.data,
-    success: response.status === 200
+    success: response.status === 200,
   };
 };
 
@@ -32,5 +32,5 @@ export const PostService = {
   getPostById,
   createPost,
   updatePost,
-  deletePost
+  deletePost,
 };
