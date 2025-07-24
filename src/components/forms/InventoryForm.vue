@@ -7,8 +7,11 @@ import InputNumber from 'primevue/inputnumber';
 import InputText from 'primevue/inputtext';
 import Message from 'primevue/message';
 import { ref, watch, computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 import type { InventoryItem, InventoryStatus } from '@/stores/inventory/types';
+
+const router = useRouter();
 
 // Props and Emit
 const props = defineProps<{
@@ -210,7 +213,15 @@ const title = computed(() => (props.mode === 'add' ? 'Add Inventory Item' : 'Edi
           class="w-full"
         />
       </div>
-
+      <div class="pt-2">
+        <Button
+          label="Back"
+          icon="pi pi-arrow-left"
+          variant="link"
+          class="w-full"
+          @click="router.back()"
+        />
+      </div>
       <Message
         v-if="error"
         severity="error"

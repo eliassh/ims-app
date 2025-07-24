@@ -113,10 +113,12 @@ const statusColor = (status: InventoryItem['status']) => {
 
         <div class="mt-5 flex justify-end gap-2">
           <Button
-            label="← Back"
-            text
+            label="Back"
+            icon="pi pi-arrow-left"
+            variant="link"
             @click="goBack"
           />
+
           <Button
             label="Edit"
             icon="pi pi-pencil"
