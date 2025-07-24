@@ -63,6 +63,7 @@ const richHtml = computed(() => marked.parse(message.value));
       type="button"
       title="Send"
       :disabled="loading"
+      aria-label="Send"
       class="mt-2 bg-blue-600 text-white px-4 py-2 rounded"
     >
       {{ loading ? 'Sending...' : 'Send' }}

@@ -116,18 +116,21 @@ const statusColor = (status: InventoryItem['status']) => {
             label="Back"
             icon="pi pi-arrow-left"
             variant="link"
+            area-label="Back"
             @click="goBack"
           />
 
           <Button
             label="Edit"
             icon="pi pi-pencil"
+            area-label="Edit"
             @click="editItem"
           />
           <Button
             label="Delete"
             icon="pi pi-trash"
             severity="danger"
+            area-label="Delete"
             @click="deleteItem"
           />
         </div>

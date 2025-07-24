@@ -107,6 +107,7 @@ const clearFilters = () => {
       label="Clear"
       icon="pi pi-filter-slash"
       class="p-button-outlined"
+      area-label="Clear"
       @click="clearFilters"
     />
 
@@ -116,6 +117,7 @@ const clearFilters = () => {
     >
       <Button
         label="Add Item"
+        area-label="Add Item"
         icon="pi pi-plus"
       />
     </RouterLink>
@@ -156,16 +158,19 @@ const clearFilters = () => {
       <template #body="{ data }">
         <Button
           icon="pi pi-eye"
+          area-label="View Item"
           class="p-button-text p-button-sm mr-2"
           @click="viewItem(data)"
         />
         <Button
           icon="pi pi-pencil"
+          area-label="Edit Item"
           class="p-button-text p-button-sm mr-2"
           @click="editItem(data)"
         />
         <Button
           icon="pi pi-trash"
+          area-label="Delete Item"
           class="p-button-text p-button-sm p-button-danger"
           @click="deleteItem(data.id)"
         />

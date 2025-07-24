@@ -35,6 +35,7 @@ import { RouterLink } from 'vue-router';
             label="Home"
             text
             class="hover:bg-indigo-100"
+            area-label="Home"
           />
         </RouterLink>
         <RouterLink
@@ -45,6 +46,7 @@ import { RouterLink } from 'vue-router';
             label="Inventory"
             text
             class="hover:bg-indigo-100x"
+            area-label="Inventory"
           />
         </RouterLink>
         <RouterLink
@@ -54,6 +56,7 @@ import { RouterLink } from 'vue-router';
           <Button
             label="About"
             text
+            area-label="About"
             class="hover:bg-indigo-100"
           />
         </RouterLink>

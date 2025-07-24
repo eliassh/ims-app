@@ -211,6 +211,7 @@ const title = computed(() => (props.mode === 'add' ? 'Add Inventory Item' : 'Edi
           :label="submitLabel"
           :loading="loading"
           class="w-full"
+          :aria-label="submitLabel"
         />
       </div>
       <div class="pt-2">
@@ -219,6 +220,7 @@ const title = computed(() => (props.mode === 'add' ? 'Add Inventory Item' : 'Edi
           icon="pi pi-arrow-left"
           variant="link"
           class="w-full"
+          aria-label="Back"
           @click="router.back()"
         />
       </div>
