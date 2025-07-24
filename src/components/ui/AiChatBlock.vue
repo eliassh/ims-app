@@ -53,7 +53,7 @@ const richHtml = computed(() => marked.parse(message.value));
   <div class="p-4 max-w-xl mx-auto">
     <textarea
       v-model="userInput"
-      class="w-full border p-2"
+      class="p-2 w-full border"
       rows="3"
       placeholder="Ask me anything..."
       @keydown.enter.prevent="handleEnter"
@@ -68,10 +68,7 @@ const richHtml = computed(() => marked.parse(message.value));
       {{ loading ? 'Sending...' : 'Send' }}
     </button>
     <h2 class="mt-4 text-lg border-l-4 border-blue-600 pl-2">{{ prevQuestion }}</h2>
-    <div
-      class="mt-2 prose"
-      v-html="richHtml"
-    />
+    <div class="mt-2 prose">{{ richHtml }}</div>
     <div
       v-if="response"
       class="mt-4 p-4 bg-gray-100 rounded"

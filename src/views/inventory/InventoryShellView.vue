@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ProgressBar from 'primevue/progressbar';
+
 import { useInventoryStore } from '@/stores/inventory/inventoryStore';
 
 const inventory = useInventoryStore();

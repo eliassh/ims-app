@@ -9,11 +9,6 @@ import pluginVue from 'eslint-plugin-vue';
 
 const { flatConfigs, configs: importXConfigs } = importX;
 
-// To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
-// import { configureVueProject } from '@vue/eslint-config-typescript'
-// configureVueProject({ scriptLangs: ['ts', 'tsx'] })
-// More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
-
 export default defineConfigWithVueTs(
   {
     name: 'app/files-to-lint',
@@ -32,7 +27,7 @@ export default defineConfigWithVueTs(
       'import-x/resolver-next': [
         createTypeScriptImportResolver({
           alwaysTryTypes: true,
-          project: './tsconfig.*?.json',
+          project: './tsconfig.app.json',
         }),
       ],
     },
@@ -48,8 +43,8 @@ export default defineConfigWithVueTs(
       ...importXConfigs.errors.rules,
       ...importXConfigs.warnings.rules,
       ...flatConfigs.recommended.rules,
-      'indent': 'off',
-      'unused-imports/no-unused-imports': 'error',
+
+      // Import rules
       'import-x/first': 'error',
       'import-x/no-deprecated': 'off',
       'import-x/newline-after-import': 'error',
@@ -59,18 +54,21 @@ export default defineConfigWithVueTs(
         {
           'alphabetize': {
             order: 'asc',
-            caseInsensitive: false,
+            caseInsensitive: true,
           },
           'newlines-between': 'always',
-          'groups': [
-            'external',
-            'builtin',
-            'internal',
-            ['parent', 'sibling', 'index'],
-          ],
-          'pathGroupsExcludedImportTypes': [],
+          'groups': ['builtin', 'external', 'internal', ['parent', 'sibling', 'index']],
         },
       ],
+
+      // Vue Composition API safety
+      'vue/no-setup-props-reactivity-loss': 'error',
+      'vue/no-ref-as-operand': 'error',
+      'vue/no-v-html': 'warn',
+      'vue/no-mutating-props': 'error',
+
+      // Stylistic overrides
+      'indent': 'off',
       '@stylistic/array-bracket-spacing': ['off'],
       '@stylistic/arrow-parens': ['error', 'always'],
       '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
@@ -98,7 +96,9 @@ export default defineConfigWithVueTs(
         asyncArrow: 'always',
         catch: 'always',
       }],
+
+      // Clean code
+      'unused-imports/no-unused-imports': 'error',
     },
   },
-
 );

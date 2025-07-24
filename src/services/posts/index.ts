@@ -1,4 +1,5 @@
 import { axiosInstance } from '@/services/api';
+
 import type { Post, CreatePostDTO, UpdatePostDTO } from './types';
 import type { APIResponse } from '../types';
 

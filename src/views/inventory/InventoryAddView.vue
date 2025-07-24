@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { useInventoryStore } from '@/stores/inventory/inventoryStore';
+
 import InventoryForm from '@/components/forms/InventoryForm.vue';
+import { useInventoryStore } from '@/stores/inventory/inventoryStore';
 import type { InventoryItem } from '@/stores/inventory/types';
 
 const router = useRouter();

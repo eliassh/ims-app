@@ -1,15 +1,16 @@
 <script setup lang="ts">
+import Button from 'primevue/button';
+import Column from 'primevue/column';
+import DataTable from 'primevue/datatable';
+import Dropdown from 'primevue/dropdown';
+import InputText from 'primevue/inputtext';
+import Tag from 'primevue/tag';
 import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+
+import PageHeader from '@/components/ui/PageHeader.vue';
 import { useInventoryStore } from '@/stores/inventory/inventoryStore';
 import type { InventoryItem } from '@/stores/inventory/types';
-import InputText from 'primevue/inputtext';
-import Dropdown from 'primevue/dropdown';
-import Button from 'primevue/button';
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import Tag from 'primevue/tag';
-import PageHeader from '@/components/ui/PageHeader.vue';
 
 const inventory = useInventoryStore();
 const router = useRouter();

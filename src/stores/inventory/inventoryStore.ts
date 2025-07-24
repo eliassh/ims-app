@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
-import { supabase } from '@/supabase';
+
 import type { InventoryItem, InventoryStatus } from '@/stores/inventory/types';
+import { supabase } from '@/supabase';
 
 export const useInventoryStore = defineStore('inventory', () => {
   const items = ref<InventoryItem[]>([]);

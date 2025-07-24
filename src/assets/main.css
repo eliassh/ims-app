@@ -1,6 +1,11 @@
 @import 'tailwindcss';
 @import 'primeicons/primeicons.css';
+
 a,
 button {
   cursor: pointer;
+}
+
+p {
+  font-size: 13px;
 }

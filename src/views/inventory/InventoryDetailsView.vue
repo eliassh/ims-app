@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router';
+import Button from 'primevue/button';
+import Card from 'primevue/card';
+import Tag from 'primevue/tag';
 import { onMounted, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
 import { useInventoryStore } from '@/stores/inventory/inventoryStore';
 import type { InventoryItem } from '@/stores/inventory/types';
-import Card from 'primevue/card';
-import Button from 'primevue/button';
-import Tag from 'primevue/tag';
 
 const route = useRoute();
 const router = useRouter();

@@ -18,3 +18,9 @@ defineProps<{
     </p>
   </div>
 </template>
+
+<style scoped>
+p {
+  font-size: 13px;
+}
+</style>

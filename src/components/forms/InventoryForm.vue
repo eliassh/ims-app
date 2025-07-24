@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
-import type { InventoryItem, InventoryStatus } from '@/stores/inventory/types';
 import useVeulidate from '@vuelidate/core';
 import { minValue, required } from '@vuelidate/validators';
-
-import InputText from 'primevue/inputtext';
-import InputNumber from 'primevue/inputnumber';
-import Dropdown from 'primevue/dropdown';
 import Button from 'primevue/button';
+import Dropdown from 'primevue/dropdown';
+import InputNumber from 'primevue/inputnumber';
+import InputText from 'primevue/inputtext';
 import Message from 'primevue/message';
+import { ref, watch, computed } from 'vue';
+
+import type { InventoryItem, InventoryStatus } from '@/stores/inventory/types';
 
 // Props and Emit
 const props = defineProps<{

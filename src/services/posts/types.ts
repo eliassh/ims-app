@@ -5,15 +5,6 @@ export type Post = {
   body: string;
 };
 
-export type CreatePostDTO = {
-  userId: number;
-  title: string;
-  body: string;
-};
+export type CreatePostDTO = Omit<Post, 'id'>;
 
-export type UpdatePostDTO = {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-};
+export type UpdatePostDTO = Post;

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+
+import InventoryForm from '@/components/forms/InventoryForm.vue';
 import { useInventoryStore } from '@/stores/inventory/inventoryStore';
 import type { InventoryItem } from '@/stores/inventory/types';
-import InventoryForm from '@/components/forms/InventoryForm.vue';
 
 const route = useRoute();
 const router = useRouter();
