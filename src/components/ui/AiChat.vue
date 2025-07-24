@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import OpenAI from 'openai';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const userInput = ref('');
 const response = ref('');
@@ -48,10 +47,7 @@ const handleEnter = (e: KeyboardEvent) => {
     sendMessage();
   }
 };
-const richHtml = async () => {
-  const sanitizedHtml = DOMPurify.sanitize(await marked.parse(message.value));
-  return sanitizedHtml;
-};
+const richHtml = computed(() => marked.parse(message.value));
 </script>
 <template>
   <div class="p-4 max-w-xl mx-auto">
