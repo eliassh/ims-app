@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import OpenAI from 'openai';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 
 const userInput = ref('');
 const response = ref('');
@@ -47,7 +48,10 @@ const handleEnter = (e: KeyboardEvent) => {
     sendMessage();
   }
 };
-const richHtml = computed(() => marked.parse(message.value));
+const richHtml = async () => {
+  const sanitizedHtml = DOMPurify.sanitize(await marked.parse(message.value));
+  return sanitizedHtml;
+};
 </script>
 <template>
   <div class="p-4 max-w-xl mx-auto">
@@ -68,7 +72,10 @@ const richHtml = computed(() => marked.parse(message.value));
       {{ loading ? 'Sending...' : 'Send' }}
     </button>
     <h2 class="mt-4 text-lg border-l-4 border-blue-600 pl-2">{{ prevQuestion }}</h2>
-    <div class="mt-2 prose">{{ richHtml }}</div>
+    <div
+      class="mt-2 prose"
+      v-html="richHtml"
+    ></div>
     <div
       v-if="response"
       class="mt-4 p-4 bg-gray-100 rounded"
