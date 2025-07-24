@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { marked } from 'marked';
 import OpenAI from 'openai';
 import { computed, ref } from 'vue';
-import { marked } from 'marked';
 
 const userInput = ref('');
 const response = ref('');
