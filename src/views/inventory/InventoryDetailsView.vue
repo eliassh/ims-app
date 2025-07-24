@@ -5,6 +5,7 @@ import Tag from 'primevue/tag';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
+import { formatDate } from '@/composables/useDateTime';
 import { useInventoryStore } from '@/stores/inventory/inventoryStore';
 import type { InventoryItem } from '@/stores/inventory/types';
 
@@ -60,11 +61,6 @@ const statusColor = (status: InventoryItem['status']) => {
     default:
       return '';
   }
-};
-
-const formatDate = (date?: string) => {
-  if (!date) return '-';
-  return new Date(date).toLocaleString();
 };
 </script>
 

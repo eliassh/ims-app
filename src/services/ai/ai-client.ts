@@ -6,7 +6,7 @@ const client = new OpenAI({
   apiKey: import.meta.env.VITE_GITHUB_TOKEN,
 });
 
-export async function askGPT4o(message) {
+export async function askGPT4o(message: string) {
   const response = await client.chat.completions.create({
     model: 'openai/gpt-4o',
     messages: [

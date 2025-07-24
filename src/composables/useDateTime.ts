@@ -1,4 +1,4 @@
-export const useDateTime = (): string => {
-  const [year, month, day] = new Date().toISOString().split('-');
-  return `${year}-${month}-${day}`;
+export const formatDate = (date?: string) => {
+  if (!date) return '-';
+  return new Date(date).toLocaleString();
 };
